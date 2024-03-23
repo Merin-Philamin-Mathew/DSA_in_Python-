@@ -12,7 +12,5 @@ def average_even(arr):
     else:
         return f"There are no even elements in {arr} "
 
-
-
 arr = [9,8,7,61]
 print(average_even(arr))

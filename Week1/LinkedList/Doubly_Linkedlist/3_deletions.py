@@ -2,7 +2,8 @@ class Node:
     def __init__(self,data):
         self.data = data 
         self.next = None
-class SinglyLl:
+        self.prev = None
+class DoublyLL:
     def __init__(self):
         self.head = None
         self.tail = None
@@ -13,6 +14,7 @@ class SinglyLl:
             self.head = newNode
         else:
             self.tail.next = newNode
+            newNode.prev = self.tail
         self.tail = newNode
     
     def display(self):
@@ -29,20 +31,18 @@ class SinglyLl:
         if self.head is None:
             return
         temp = self.head
-        prev = None
         if temp.data == key:
             self.head = temp.next
             return
         while temp is not None and temp.data != key:
-            prev = temp
             temp = temp.next
         if temp is None:
             return
         if temp == self.tail:
-            self.tail = prev
+            self.tail = self.tail.prev
             self.tail.next = None
             return
-        prev.next = temp.next
+        temp.prev.next = temp.next
 
     def deleteAfter(self,nextTo):
         if self.head is None:
@@ -54,17 +54,16 @@ class SinglyLl:
             print("Reached out of the list")
             return
         temp.next = temp.next.next
+        temp.next.next.prev = temp.next
         
     def deleteBefore(self,before):
         if self.head is None:
             return
         temp = self.head
-        prev = None
         if temp.data == before:
             print(f"Nothing before {temp.data}")
             return
         while temp is not None and temp.next.data != before:
-            prev = temp
             temp = temp.next
         if temp is None:
             print("Reached out of the List")
@@ -72,10 +71,11 @@ class SinglyLl:
         if temp == self.head:
             self.head = self.head.next
             return
-        prev.next = temp.next
+        temp.prev = temp.next
+        temp.next = temp.prev
 
 
-list = SinglyLl()
+list = DoublyLL()
 lst = [1,2,3,4,5,6,7,8,9]
 for i in lst:
     list.addNode(i)

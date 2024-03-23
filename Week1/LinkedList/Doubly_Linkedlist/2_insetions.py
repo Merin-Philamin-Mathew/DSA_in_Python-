@@ -2,8 +2,9 @@ class Node:
     def __init__(self,data):
         self.data = data 
         self.next = None
+        self.prev = None
 
-class SinglyLL:
+class DoublyLL:
     def __init__(self):
         self.head = None
         self.tail = None
@@ -14,6 +15,7 @@ class SinglyLL:
             self.head = newNode
         else:
             self.tail.next = newNode
+            newNode.prev = self.tail
         self.tail = newNode
 
     #to insert in the beginning
@@ -21,6 +23,7 @@ class SinglyLL:
         #instance of node
         newNode = Node(key)
         newNode.next = self.head
+        self.head.prev = newNode
         self.head = newNode
 
     def insertAfter(self,key,nextTo):
@@ -32,32 +35,36 @@ class SinglyLL:
             return
         if temp == self.tail:
             self.tail.next = newNode
+            newNode.prev = self.tail
             self.tail = newNode
             return
         newNode.next = temp.next
         temp.next = newNode
+        newNode.prev = temp
     
     def insertBefore(self,key,before):
         newNode = Node(key)
         if self.head is None:
             return
         temp = self.head
-        prev = None
         if temp.data == before:
             newNode.next = self.head
+            self.head.prev = newNode
             self.head = newNode
             return
         while temp is not None and temp.data != before:
-            prev = temp
             temp = temp.next
         if temp is None:
             return
         newNode.next = temp
-        prev.next = newNode
+        temp.prev.next = newNode
+        newNode.prev = temp.prev
+        temp.prev = newNode
 
     def insertEnd(self,key):
         newNode = Node(key)
         self.tail.next = newNode
+        newNode.prev = self.tail
         self.tail = newNode
 
     def display(self):
@@ -70,7 +77,7 @@ class SinglyLL:
             temp = temp.next
         print()
 
-list = SinglyLL()
+list = DoublyLL()
 list.addNode(1)
 list.addNode(2)
 list.addNode(3)

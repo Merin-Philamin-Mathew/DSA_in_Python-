@@ -5,6 +5,6 @@ capitalized_string = capitalize_first_letter(input_string)
 print("Capitalized string:", capitalized_string)
 
 
-sentence = "This, is a sam,ple sentence."
-words = sentence.split(",")  # Split the sentence into words based on whitespace
+sentence = "This is a sample sentence."
+words = sentence.split(" ")  # Split the sentence into words based on whitespace
 print(words)

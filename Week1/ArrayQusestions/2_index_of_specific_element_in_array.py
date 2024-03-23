@@ -17,4 +17,8 @@ def index_of_element(arr,element):
 
 arr = [4,5,6,7,8,9]
 element_to_find = int(input(f"Enter the element you want to find in the array,{arr}:"))
-print(f"The index of {element_to_find} in {arr} is: {index_of_element(arr,element_to_find)}")
+index = index_of_element(arr,element_to_find)
+if index != -1:
+    print(f"The index of {element_to_find} in {arr} is: {index}")
+else:
+    print(f"No element {element_to_find} in the arr")

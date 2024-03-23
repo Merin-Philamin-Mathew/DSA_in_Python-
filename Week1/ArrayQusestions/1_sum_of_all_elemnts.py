@@ -5,5 +5,6 @@ def calculate_sum(arr):
     return total
 
 # result = calculate_sum({1,2,3,4})
-result = calculate_sum([1,2,3,4])
+lst = [1,2,3,4,5]
+result = calculate_sum(lst)
 print("The sum of elements in the array is:",result)

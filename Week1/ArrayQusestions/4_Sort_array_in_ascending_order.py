@@ -8,6 +8,6 @@ def ascending_order(arr):
 arr = [4,5,3,6,1,7,0]
 print(f"ascending order of {arr} is {ascending_order(arr)}")
 print(f"sorted(arr),{sorted(arr)}")
-print(f"arr.sort(),{arr.sort()}")
 arr.sort()
 print(f"arr.sort(),{arr}")
+print(f"arr.sort(),{arr.sort()}")
