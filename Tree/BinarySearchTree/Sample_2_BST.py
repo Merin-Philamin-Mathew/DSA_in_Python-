@@ -99,6 +99,7 @@ class BST:
             while node.lchild:
                 node = node.lchild
             self.key = node.key
+            #deleting the node(smallest key in rchild) whose key has been replaced with data 
             self.rchild = self.rchild.delete(node.key,curr)
         return self
 

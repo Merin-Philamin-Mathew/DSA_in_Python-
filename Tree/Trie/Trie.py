@@ -17,6 +17,7 @@ class Trie:
             letter = string[i]
             if letter not in node.children:
                 #creating a hashtable actually
+                #empty dict children for new letter going to be added on the node
                 new_node = TrieNode()
                 #adding a key==letter to the hashtable of the previous node
                 #and asigning the value of new key as new_node containg a fresh hashtable/dictionary
