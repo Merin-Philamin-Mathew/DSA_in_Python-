@@ -8,13 +8,9 @@ class Trie:
         self.root = TrieNode()
         self.end_symbol = '*'
 
-    def suffixTrie(self,string):
-        for i in range(len(string)):
-            self.insert(i,string)
-
-    def insert(self, index, string):
+    def insert(self, string):
         node = self.root
-        for i in range(index, len(string)):
+        for i in range(len(string)):
             letter = string[i]
             if letter not in node.children:
                 #creating a hashtable actually
@@ -58,10 +54,10 @@ class Trie:
         return self.end_symbol in node.children
     
 trie = Trie()
-trie.suffixTrie("neel")
-trie.insert(0,'night')
-trie.insert(0,'eight')
-trie.insert(0,'neat')
+trie.insert('neel')
+trie.insert('night')
+trie.insert('eight')
+trie.insert('neat')
 print(trie.contains("eel"))
 print(trie.contains("night"))
 

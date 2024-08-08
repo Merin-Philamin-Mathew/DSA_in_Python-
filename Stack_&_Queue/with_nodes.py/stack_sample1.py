@@ -2,32 +2,32 @@ class Node:
     def __init__(self,data):
         self.data = data
         self.next = None
-    
+
 class Stack:
     def __init__(self):
         self.top = None
 
     def push(self,key):
         newNode = Node(key)
-        if self.top is None:
-            self.top = newNode
-        else:
-            newNode.next = self.top
-            self.top = newNode
-
-    def pop(self):
-        if self.top is None:
-            print("stack underflow")
-            return 
-        self.top = self.top.next
+        newNode.next = self.top
+        self.top = newNode
 
     def display(self):
         temp = self.top
         while temp is not None:
-            print(temp.data)
+            print(temp.data, end=" ")
             temp = temp.next
+        print()
 
-    def reverse_str(self, string):
+    def pop(self):
+        print("pop--->",end="")
+        if self.top is None:
+            print("stack underflow")
+            return
+        self.top = self.top.next
+        self.display()
+
+    def reverse_str(self,string):
         # Create an empty stack
         stack = Stack()
 
@@ -43,15 +43,20 @@ class Stack:
 
         return reversed_string
 
-list = Stack()
-list.push(10)
-list.push(20)
-list.push(30)
-list.push(40)
-list.push(50)
 
-#list.pop()
-list.display()
-str = "aalrib atat"
-reversed = list.reverse_str(str)
-print(reversed)
+stack = Stack()
+stack.push(23)
+stack.push(44)
+stack.push(55)
+stack.push(32)
+stack.display()
+stack.pop()
+stack.pop()
+stack.pop()
+stack.pop()
+stack.pop()
+stack.pop()
+stack.push(45)
+stack.push(46)
+stack.display()
+print(stack.reverse_str('merin'))

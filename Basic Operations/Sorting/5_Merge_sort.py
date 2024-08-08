@@ -32,8 +32,10 @@ def mergeSort(arr):
             j+=1
             k+=1
 
-arr = [300,50,20,10,13,8,5,4,3]
-#arr =  [6,43,7,4,7,4,5,6,34,1]
+# arr = [300,50,20,10,13,8,5,4,3]
+# arr =  [6,43,7,4,7,4,5,6,34,1]
+arr = [1,6,5,4,5,3,2,1]
+
 print("unsorted list:", arr)
 mergeSort(arr)
 print("sorted arrayf:", arr)

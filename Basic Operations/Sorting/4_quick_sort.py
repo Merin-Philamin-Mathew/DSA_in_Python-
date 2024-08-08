@@ -1,3 +1,5 @@
+print("================QUICK SORT=================")
+
 def quickSort(array,left,right):
     #when left goes beyond right
     #when i moves more left side than j
@@ -14,11 +16,15 @@ def partition(array,left,right):
 
     while i<j:
         while i<right and array[i] < pivot:
+            print("1",array)
             i+=1
         while j>left and array[j] > pivot:
+            print("2",array)
             j-=1
+        print("3",array)
         if i < j:
             array[i],array[j] = array[j],array[i]
+            print('4',array)
     #i>j
     #left and right positions meets
     if array[i]>pivot:

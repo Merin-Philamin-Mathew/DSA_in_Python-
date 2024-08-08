@@ -1,5 +1,5 @@
 def f(c):
     c+=1
-    print("ji",c)
+    print("inf",c)
     f(c)
 f(0)

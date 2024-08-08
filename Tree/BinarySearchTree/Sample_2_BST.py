@@ -1,5 +1,5 @@
 class BST:
-    def __init__(self,key):
+    def __init__(self,key=None):
         self.key = key
         self.lchild = None
         self.rchild = None
@@ -14,9 +14,9 @@ class BST:
 
         if data<self.key:
             if self.lchild:
-                self.lchild.insert(data)
+                self.lchild.insert(data) #calling insert method to the subtree with self.lchild as root node
             else:
-                self.lchild = BST(data)
+                self.lchild = BST(data) #starting a new subtree with root value as 'data' as lchild of current root node(self.key) in the recursive run
         else:
             if self.rchild:
                 self.rchild.insert(data)
@@ -60,34 +60,39 @@ class BST:
             self.rchild.post_order()
         print(self.key,end=" ")
 
-    def delete(self,data,curr):
+    def delete(self,data,root):
         if self.key is None:
             print("The tree is empty")
             return
         if data<self.key:
             if self.lchild:
-                self.lchild = self.lchild.delete(data,curr)
+                self.lchild = self.lchild.delete(data,root)
             else:
                 print("Not found")
         elif data>self.key:
             if self.rchild:
-                self.rchild = self.rchild.delete(data,curr)
+                self.rchild = self.rchild.delete(data,root)
             else:
                 print("Not found")
         else:
+            # self.key == data >> data-node
+            # case 1 data-node only have either left or right branch 
             if self.lchild is None:
                 temp = self.rchild
-                if data == curr:
+                if data == root:
+                    # changing the datas of root as temp's data and return
                     self.key = temp.key
                     self.lchild = temp.lchild
                     self.rchild = temp.rchild
                     temp=None
                     return
+                # this subtree with root data-node have to be deleted
                 self = None
+                # and its only branch should have to joined with its parent node's left or right child
                 return temp
             if self.rchild is None:
                 temp = self.lchild
-                if data == curr:
+                if data == root:
                     self.key = temp.key
                     self.lchild = temp.lchild
                     self.rchild = temp.rchild
@@ -95,12 +100,13 @@ class BST:
                     return
                 self = None
                 return temp
+            # case 2 node with self.key matched have both child nodes
             node = self.rchild
             while node.lchild:
                 node = node.lchild
             self.key = node.key
-            #deleting the node(smallest key in rchild) whose key has been replaced with data 
-            self.rchild = self.rchild.delete(node.key,curr)
+            #deleting the node(smallest key in rchild) whose key has been replaced with data node 
+            self.rchild = self.rchild.delete(node.key,root)
         return self
 
 
@@ -142,6 +148,6 @@ print("========-------- DELETE ---------========")
 root.delete(6,root)
 root.in_order()
 print()
-print("========-------- MIN_MAX ---------========")
+print("========-------- MIN_MAX---------========")
 root.min_value()
 root.max_value()

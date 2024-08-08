@@ -19,16 +19,21 @@ class SinglyLL:
     #to insert in the beginning
     def insertBeginning(self,key):
         #instance of node
+        print('insert',key,' in the beginning')
         newNode = Node(key)
         newNode.next = self.head
         self.head = newNode
 
     def insertAfter(self,key,nextTo):
+        print('insert',key,"after",nextTo)
+        if self.head is None:
+            return
         newNode = Node(key)
         temp = self.head
         while(temp is not None and temp.data != nextTo):
             temp = temp.next
         if temp == None:
+            print(nextTo, "is not in list")
             return
         if temp == self.tail:
             self.tail.next = newNode
@@ -38,9 +43,10 @@ class SinglyLL:
         temp.next = newNode
     
     def insertBefore(self,key,before):
-        newNode = Node(key)
+        print('insert',key,'before',before)
         if self.head is None:
             return
+        newNode = Node(key)
         temp = self.head
         prev = None
         if temp.data == before:
@@ -51,6 +57,7 @@ class SinglyLL:
             prev = temp
             temp = temp.next
         if temp is None:
+            print(before,'is not in the list')
             return
         newNode.next = temp
         prev.next = newNode

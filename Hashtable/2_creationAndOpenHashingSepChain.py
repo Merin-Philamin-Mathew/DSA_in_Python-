@@ -7,7 +7,7 @@ class Node:
 class HashTable:
     def __init__(self,size):
         self.size = size
-        self.table = [None for i in range(self.size)]
+        self.table = [None for _ in range(self.size)]
 
 
     def hash_fun(self,key):
@@ -20,14 +20,14 @@ class HashTable:
         else:
             temp = self.table[index]
             while temp.next is not None:
-                # if temp.key == key:
-                #     temp.value = value
-                #     return
+                if temp.key == key:
+                    temp.value = value #update value if key already exists
+                    return
                 temp = temp.next
-            temp.next = Node(key,value)
+            temp.next = Node(key,value) #adding value to the end of chain
             #or 
             # new_node = Node(key,value)
-            # new_node.next = self.table[index]
+            # new_node.next = self.table[index]  #adding value to the start of chain
             # self.table[index] = new_node
 
 
@@ -42,12 +42,11 @@ class HashTable:
     def get(self, key):
         index = self.hash_fun(key)
         temp = self.table[index]
-        while temp is not None and temp.key != key:
+        while temp and temp.key != key:
             temp = temp.next 
         if temp is None:
             return None
-        else:
-            return temp.value
+        return temp.value
         
     def remove(self, key):
         index = self.hash_fun(key)
@@ -55,27 +54,27 @@ class HashTable:
         if temp and temp.key == key:
             self.table[index] = temp.next
             return
-        while temp is not None and temp.next.key != key:
+        while temp.next and temp.next.key !=:
+            if temp.next.key == key:
+                temp.next = temp.next.next
+                return
             temp = temp.next
-        if temp is None:
-            return None
-        temp.next = temp.next.next
 
         
     def display(self):
         print("Hash Table:")
-        for index, item in enumerate(self.table):
+        for index, node in enumerate(self.table):
             print(f"{index}:", end=" ") #print index
 
             #if item is None, indicate an empty slot
-            if item is None:
+            if node is None:
                 print("None")
             #Otherwise, traverse the linked list and print key-value pairs
             else:
-                current = item
-                while current is not None:
-                    print(f"({current.key}, {current.value})",end=" -> ")
-                    current = current.next 
+                current_node = node
+                while current_node is not None:
+                    print(f"({current_node.key}, {current_node.value})",end=" -> ")
+                    current_node = current_node.next 
                 print("end") #Mark the end of the chain
 
     def __contains__(self, key):

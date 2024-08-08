@@ -49,12 +49,15 @@ class Graph:
                 print(current, "-->", end="")
                 visited.add(current)
                 for i in self.dic[current]:
-                    queue.append(i)
+                    queue.append(i) 
 
 graph = Graph()
 graph.insert(4,5,True)
 graph.insert(4,56,True)
+graph.insert(8,6,False)
+graph.insert(8,5,True)
 graph.insert(5,7,False)
+graph.insert(7,6,False)
 graph.display()
 
 print("DFS:")
