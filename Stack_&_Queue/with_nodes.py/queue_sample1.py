@@ -28,7 +28,7 @@ class Queue:
         if self.front is None:
             print("queue is empty")
         temp = self.front
-        while temp is not None:
+        while temp:
             print(temp.data, end=" ")
             temp = temp.next
         print()

@@ -10,8 +10,7 @@ class Trie:
 
     def insert(self, string):
         node = self.root
-        for i in range(len(string)):
-            letter = string[i]
+        for letter in string:
             if letter not in node.children:
                 #creating a hashtable actually
                 #empty dict children for new letter going to be added on the node

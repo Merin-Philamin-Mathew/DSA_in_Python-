@@ -28,32 +28,42 @@ class DoublyLL:
 
     def insertAfter(self,key,nextTo):
         newNode = Node(key)
-        temp = self.head
-        while(temp is not None and temp.data != nextTo):
-            temp = temp.next
-        if temp == None:
-            return
-        if temp == self.tail:
+
+        if self.tail.data == nextTo:
             self.tail.next = newNode
             newNode.prev = self.tail
-            self.tail = newNode
+            self.tail - newNode
+            return
+        
+        temp = self.head
+        while(temp and temp.data != nextTo):
+            temp = temp.next
+        if temp == None:
+            print(f"there is no elem,{nextTo}")
             return
         newNode.next = temp.next
         temp.next = newNode
         newNode.prev = temp
+        newNode.next.prev = newNode
+
     
     def insertBefore(self,key,before):
-        newNode = Node(key)
         if self.head is None:
+            print("empty list")
             return
-        temp = self.head
-        if temp.data == before:
+        
+        newNode = Node(key)
+        if key == self.head.data:
             newNode.next = self.head
             self.head.prev = newNode
             self.head = newNode
             return
+        
+        temp = self.head
+
         while temp is not None and temp.data != before:
             temp = temp.next
+
         if temp is None:
             return
         newNode.next = temp
@@ -66,6 +76,17 @@ class DoublyLL:
         self.tail.next = newNode
         newNode.prev = self.tail
         self.tail = newNode
+
+    def displayInverse(self):
+        if self.head is None:
+            print("empty list")
+            return 
+        
+        print("inverse list",end="--> ")
+        temp = self.tail
+        while temp:
+            print(temp.data, end=" ")
+            temp = temp.prev
 
     def display(self):
         if self.head is None:

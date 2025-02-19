@@ -23,17 +23,16 @@ class SinglyLL:
             temp = temp.next
         print()
 
-    def reverse_printing(self):
-        if self.head is None:
-            return
+    def reverse(self):
         temp = self.head
+        self.tail= self.head
         prev = None
         while temp is not None:
             next = temp.next
             temp.next = prev
             prev = temp
             temp = next
-        self.head = self.tail #or prev
+        self.head = prev
 
 
 list = SinglyLL()
@@ -43,5 +42,5 @@ for i in lst:
 list.display()
 
 print("======------- printing reverse ------======")
-list.reverse_printing()
+list.reverse()
 list.display()

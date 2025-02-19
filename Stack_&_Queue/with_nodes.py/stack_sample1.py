@@ -13,6 +13,9 @@ class Stack:
         self.top = newNode
 
     def display(self):
+        if self.top is None:
+            print("stack is empty")
+            return
         temp = self.top
         while temp is not None:
             print(temp.data, end=" ")
@@ -28,7 +31,6 @@ class Stack:
         self.display()
 
     def reverse_str(self,string):
-        # Create an empty stack
         stack = Stack()
 
         # Push each character of the string onto the stack
@@ -42,13 +44,12 @@ class Stack:
             stack.pop()
 
         return reversed_string
-
+    
+arr = [3,6,43,6,8,2]
 
 stack = Stack()
-stack.push(23)
-stack.push(44)
-stack.push(55)
-stack.push(32)
+for i in arr:
+    stack.push(i)
 stack.display()
 stack.pop()
 stack.pop()
@@ -56,7 +57,4 @@ stack.pop()
 stack.pop()
 stack.pop()
 stack.pop()
-stack.push(45)
-stack.push(46)
-stack.display()
 print(stack.reverse_str('merin'))

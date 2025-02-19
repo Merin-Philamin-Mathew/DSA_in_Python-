@@ -44,7 +44,7 @@ class MaxHeap:
         self._heapify_down(0)
         return root
 
-    def peek_max(self):
+    def peak_max(self):
         return self.heap[0] if self.heap else None
 
     def __str__(self):
@@ -58,4 +58,4 @@ for i in array:
 print("Max-Heap:", max_heap)
 print("Extract Max:", max_heap.extract_max())
 print("Max-Heap after extraction:", max_heap)
-print("Peek Max:", max_heap.peek_max())
+print("Peek Max:", max_heap.peak_max())

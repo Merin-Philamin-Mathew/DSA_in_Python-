@@ -1,0 +1,1 @@
+[None for _ in range(self.size)]

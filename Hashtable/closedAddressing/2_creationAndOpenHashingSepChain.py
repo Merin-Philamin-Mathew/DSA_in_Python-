@@ -10,16 +10,16 @@ class HashTable:
         self.table = [None for _ in range(self.size)]
 
 
-    def hash_fun(self,key):
+    def hashFunc(self,key):
         return hash(key)%self.size
     
     def add(self,key,value):
-        index = self.hash_fun(key)
+        index = self.hashFunc(key)
         if self.table[index] is None:
             self.table[index] = Node(key, value)
         else:
             temp = self.table[index]
-            while temp.next is not None:
+            while temp.next:
                 if temp.key == key:
                     temp.value = value #update value if key already exists
                     return
@@ -32,7 +32,7 @@ class HashTable:
 
 
     # def get(self, key):
-    #         index = self.hash_fun(key)
+    #         index = self.hashFunc(key)
     #         temp = self.table[index]
     #         while temp:
     #             if temp.key == key:
@@ -40,7 +40,7 @@ class HashTable:
     #             temp = temp.next 
     #         raise KeyError(key)
     def get(self, key):
-        index = self.hash_fun(key)
+        index = self.hashFunc(key)
         temp = self.table[index]
         while temp and temp.key != key:
             temp = temp.next 
@@ -49,12 +49,12 @@ class HashTable:
         return temp.value
         
     def remove(self, key):
-        index = self.hash_fun(key)
+        index = self.hashFunc(key)
         temp = self.table[index]
         if temp and temp.key == key:
             self.table[index] = temp.next
             return
-        while temp.next and temp.next.key !=:
+        while temp.next and temp.next.key != key:
             if temp.next.key == key:
                 temp.next = temp.next.next
                 return

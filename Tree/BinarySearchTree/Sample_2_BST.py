@@ -122,6 +122,13 @@ class BST:
             current = current.rchild
         print("max:",current.key)
 
+    def height(self):
+        if self.key is None:
+            return 0
+        left_height = self.lchild.height() if self.lchild else 0
+        right_height = self.rchild.height() if self.rchild else 0
+        return max(left_height, right_height) + 1
+
 def count(node):
     if node is None:
         return 0
@@ -151,3 +158,6 @@ print()
 print("========-------- MIN_MAX---------========")
 root.min_value()
 root.max_value()
+
+print("========-------- HEIGHT ---------========")
+print("Height of the tree:", root.height())

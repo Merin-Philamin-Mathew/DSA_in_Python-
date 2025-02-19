@@ -26,23 +26,36 @@ class DoublyLL:
             print(temp.data, end=" ")
             temp = temp.next
         print()
-
-    def deleteNode(self,key):
+        
+    def notEmpty(self):
         if self.head is None:
-            return
-        temp = self.head
-        if temp.data == key:
-            self.head = temp.next
-            return
-        while temp is not None and temp.data != key:
-            temp = temp.next
-        if temp is None:
-            return
-        if temp == self.tail:
-            self.tail = self.tail.prev
-            self.tail.next = None
-            return
-        temp.prev.next = temp.next
+            print("empty list")
+            return False
+        return True
+    
+    def deleteNode(self,key):
+        if self.notEmpty():
+
+            if key == self.head:
+                self.head = self.head.next
+                self.head.prev = None
+                return
+            
+            if key == self.tail:
+                self.tail = self.tail.prev
+                self.tail.next = None
+                return
+
+            temp = self.head
+            while temp and temp.data != key:
+                temp = temp.next
+
+            if temp is None:
+                return
+            
+            temp.next.prev = temp.prev
+            temp.prev.next = temp.next
+            temp = None
 
     def deleteAfter(self,nextTo):
         if self.head is None:
@@ -54,7 +67,7 @@ class DoublyLL:
             print("Reached out of the list")
             return
         temp.next = temp.next.next
-        temp.next.next.prev = temp.next
+        temp.next.prev = temp
         
     def deleteBefore(self,before):
         if self.head is None:

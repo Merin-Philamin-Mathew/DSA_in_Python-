@@ -30,7 +30,7 @@ class SinglyLL:
             return
         newNode = Node(key)
         temp = self.head
-        while(temp is not None and temp.data != nextTo):
+        while temp is not None and temp.data != nextTo:
             temp = temp.next
         if temp == None:
             print(nextTo, "is not in list")
@@ -39,8 +39,8 @@ class SinglyLL:
             self.tail.next = newNode
             self.tail = newNode
             return
-        newNode.next = temp.next
-        temp.next = newNode
+        newNode.next = temp.next #assining the value(data) temp.next
+        temp.next = newNode #assining to the pointer temp.next
     
     def insertBefore(self,key,before):
         print('insert',key,'before',before)
@@ -77,6 +77,9 @@ class SinglyLL:
             temp = temp.next
         print()
 
+    def printjust(self):
+        print('fjksldfjsdlfjl')
+
 list = SinglyLL()
 list.addNode(1)
 list.addNode(2)
@@ -96,3 +99,4 @@ list.display()
 print("=========------ insert before ------========")
 list.insertBefore(2000,0)
 list.display()
+list.printjust()

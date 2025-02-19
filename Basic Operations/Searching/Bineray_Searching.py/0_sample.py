@@ -7,7 +7,7 @@ def binarysearch(lst, l, r, x):
             l = mid+1
         else:
             r = mid-1
-    return None
+
 
 def binarySearch(lst, x, l, r):
     if l<=r:
@@ -18,15 +18,14 @@ def binarySearch(lst, x, l, r):
             return binarySearch(lst, x, mid+1, r)
         else:
             return binarySearch(lst, x, l, mid-1)
-    else:
-        return None
+
 
 lst = [1,2,3,4]
-x = 4
+x = 3
 result = binarysearch(lst, 0, len(lst)-1, x)
 # result = binarySearch(lst,x, 0, len(lst)-1)
 
-if result is not None:
+if result:
     print(f"Element found at index {result}")
 else:
     print("Element not found")

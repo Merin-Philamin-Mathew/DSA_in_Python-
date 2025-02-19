@@ -10,8 +10,9 @@ class Graph:
             self.add_vertex(vertex)
         if edge not in self.dic:
             self.add_vertex(edge)
-        self.dic[vertex].append(edge)
-        if is_bidirectional:
+        if edge not in self.dic[vertex]:
+            self.dic[vertex].append(edge)
+        if is_bidirectional and vertex not in self.dic[edge]:
             self.dic[edge].append(vertex)
 
     def display(self):

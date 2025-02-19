@@ -25,54 +25,54 @@ class SinglyLl:
             temp = temp.next
         print()
 
-    def deleteNode(self,key):
-        if self.head is None:
+    def deleteNode(self, key):
+        if not self.head:
             return
+        # Delete head
+        if self.head.data == key:
+            self.head = self.head.next
+            return
+
         temp = self.head
         prev = None
-        if temp.data == key:
-            self.head = temp.next
-            return
-        while temp is not None and temp.data != key:
-            prev = temp
+
+        # Find node to delete
+        while temp and temp.data != key:
+            prev = temp 
             temp = temp.next
-        if temp is None:
+        if not temp:
             return
+        # Update pointers
+        prev.next = temp.next
+        # Update tail if needed
         if temp == self.tail:
             self.tail = prev
-            self.tail.next = None
-            return
-        prev.next = temp.next
 
     def deleteAfter(self,nextTo):
         if self.head is None:
             return
         temp = self.head
-        while temp is not None and temp.data != nextTo:
+        while temp and temp.data != nextTo:
             temp = temp.next
-        if temp is None or temp == self.tail:
-            print("Reached out of the list")
-            return
-        temp.next = temp.next.next
+        if temp and temp.next:
+            if temp.next == self.tail:
+                self.tail = temp
+            temp.next = temp.next.next
         
     def deleteBefore(self,before):
-        if self.head is None:
+        if self.head is None or self.head.data == before:
             return
+            
         temp = self.head
-        prev = None
-        if temp.data == before:
-            print(f"Nothing before {temp.data}")
+        if temp.next.data == before:
+            self.head = temp.next
             return
-        while temp is not None and temp.next.data != before:
-            prev = temp
+            
+        while temp.next is not None and temp.next.next is not None:
+            if temp.next.next.data == before:
+                temp.next = temp.next.next
+                return
             temp = temp.next
-        if temp is None:
-            print("Reached out of the List")
-            return
-        if temp == self.head:
-            self.head = self.head.next
-            return
-        prev.next = temp.next
 
 
 list = SinglyLl()
